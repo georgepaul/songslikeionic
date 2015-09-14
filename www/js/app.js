@@ -8,8 +8,8 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
 	.run(function ($ionicPlatform) {
 		'use strict';
 
-    window.domain = "http://localhost:3000/";
-    //window.domain = "http://songslike.herokuapp.com/";
+    //window.domain = "http://localhost:3000/";
+    window.domain = "http://songslike.herokuapp.com/";
 
 		$ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -41,12 +41,7 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
     
 
 
-		// setup an abstract state for the tabs directive
-		.state('splash', {
-		  url: "/",
-		  templateUrl: "templates/splash.html"
-		})
-
+	
 		.state('login', {
 		  url: "/login",
 		  templateUrl: "templates/login.html",
@@ -62,8 +57,8 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
 
   .state('callback', {
       url: '/callback',
-      templateUrl: 'templates/profile.html',
-      controller: 'ProfileController'
+      templateUrl: 'templates/today.html',
+      controller: 'TodayController'
     })
 
 
@@ -136,7 +131,7 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
 		});
 
 	  // if none of the above states are matched, use this as the fallback
-	  $urlRouterProvider.otherwise('/profile');
+	  $urlRouterProvider.otherwise('/today');
 
 	})
 
@@ -170,13 +165,10 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
 })
 
 .controller("ApplicationController", function($scope, $http, $localStorage, $location) {
-  console.log("DDDD")
+  
 
-
-
-        if($localStorage.hasOwnProperty("accessToken") === true) {
+if($localStorage.hasOwnProperty("accessToken") === true) {
             $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
-            $scope.profileData = result.data;
             $scope.user = result.data;
           
 
@@ -189,56 +181,44 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
             alert("Not signed in");
             $location.path("/login");
         }
-    
+ 
 
 })
 
-.controller("ProfileController", function($scope, $http, $localStorage, $location) {
-  console.log("DDDD")
-
-        if($localStorage.hasOwnProperty("accessToken") === true) {
-            $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
-                $scope.profileData = result.data;
-                $scope.user = result.data;
-                }, function(error) {
-                alert("There was a problem getting your profile.");
-                console.log(error);
-            });
-        } else {
-            alert("Not signed in");
-            $location.path("/login");
-        }
-    
-
-})
-
-
-
-.controller("LoginCtrl", function($ssssscope, $cordovaOauth, $http, $localStorage, $location) {
+.controller("LoginCtrl", function($scope, $cordovaOauth, $http, $localStorage, $location) {
 
 
    
  $scope.login = function() {
         $cordovaOauth.facebook("225045417506532", ["user_friends","email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
             $localStorage.accessToken = result.access_token;
+            $localStorage.me = result.data
+            saveToDB();
 
+        }, function(error) {
+            alert("There was a problem signing in!  See the console for logs");
+            $location.path("/login");
+            console.log(error);
+        });
+    };
 
-
+    $scope.saveToDB = function() {
+      alert("savetoDB");
         if($localStorage.hasOwnProperty("accessToken") === true) {
             $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
            
           
-          $.post( window.domain + "/login", { name: result.data.name, 
-                                              image_url: result.picture.data.url,
-                                              gender: result.data.gender,  
-                                              location: result.data.location,
+          $.post( window.domain + "/login", { name: $localStorage.me.name, 
+                                              image_url: $localStorage.me.url,
+                                              gender: $localStorage.me.gender,  
+                                              location: $localStorage.me.location,
                                               access_token: $localStorage.accessToken,
-                                              uid: result.data.id
+                                              uid: $localStorage.me.id
                                               }).done(function( data ) 
           {
+            alert("b");
                 $location.path("/today");
-   
-          });
+           });
 
         }, function(error) {
                 alert("There was a problem getting your profile.");
@@ -249,16 +229,10 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
             alert("Not signed in");
             $location.path("/login");
         }
+       }// save to db
 
-        
- }, function(error) {
-            alert("There was a problem signing in!");
-            console.log(error);
-        });
-    };
-$location.path("/login");
+
 })
-
 
 
 
