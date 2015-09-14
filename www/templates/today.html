@@ -1,0 +1,24 @@
+<ion-view title="Recent">
+
+<ion-content>
+
+<ion-list id="recent" class="top-fix">
+  <ion-item  ng-click="sampleVideo('{{item.youtube_id}}');" style="position:relative;" class="item-thumbnail-left " ng-repeat="item in items">
+    
+      <img  ng-src="{{ item.suggested_by_image }}">
+ 
+ <span class="list-name">{{item.song_name}} - {{item.suggested_to_name}}</span> 
+<span class="list-middle">{{ item.suggested_by }} </span>
+
+
+
+<span class="list-footer"><i class="{{item.icon_class}}"></i><b>{{item.suggestion_story}}</b></span>
+ 
+<span class="item-note" ><i class="ion-calendar"></i> 2 minutes ago</span>
+
+  </ion-item>
+</ion-list>
+
+ </ion-content>
+</ion-view>
+

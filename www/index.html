@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html ng-app="starter">
+  <head>
+    <meta charset="utf-8">
+ <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.4.0/animate.min.css" rel="stylesheet">
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+     <script src="js/ng-cordova.min.js"></script>
+        <script src="cordova.js"></script>
+        <script src="js/ngStorage.min.js"></script>
+
+    <script src="https://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+    <!-- AngularFire Plugin -->
+    <script src="https://cdn.firebase.com/libs/angularfire/0.7.0/angularfire.min.js"></script>
+    <script type="text/javascript" src="https://cdn.firebase.com/js/simple-login/1.3.0/firebase-simple-login.js"></script>
+	<script src="lib/angular-animate/angular-animate.js"></script>
+	<script src="lib/angular-cookies/angular-cookies.js"></script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body>
+
+   
+
+
+<ion-side-menus>
+
+  <ion-side-menu-content id="sidemenudelegate" drag-content="false">
+     
+     <ion-nav-bar class="bar-stable">
+
+ 
+
+        <ion-nav-buttons side="left">
+        <button class="button button-large button-positive icon fa fa-bars" menu-toggle="left">
+        </button>
+
+        </ion-nav-buttons>
+
+          <ion-nav-buttons id="suboptions" side="right">
+          <button style="display:none;" id="moreoptions" class="button button-large button-positive icon fa fa-ellipsis-v" menu-toggle="right">
+         </button><button ng-controller="PlayListsController" style="display:none;" id="plus" ng-click="createList();" class="button button-large button-positive icon fa fa-plus">
+          </button>
+          </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-view animation="slide-left-right"></ion-nav-view>
+
+
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left" class="top-fix">
+    <ion-content>
+      <ion-list>
+        <ion-item href="#/today" menu-close="" ng-click="login()">
+          Today
+        </ion-item>
+        <ion-item menu-close="" href="#/playlists">
+          Collaborative Playlists
+        </ion-item>
+        <ion-item menu-close="" href="#/friends">
+          Your Friends
+        </ion-item>
+ <ion-item menu-close="" href="#/search">
+          Your History
+        </ion-item>
+
+        <ion-item menu-close="" href="#/search">
+          Search YouTube
+        </ion-item>
+         <ion-item menu-close="" href="#/search">
+          Settings
+        </ion-item>
+ 
+
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+
+
+<ion-side-menu side="right" id="" class="top-fix">
+    <ion-content id="rightmenu">
+     
+      <ion-list id="todaymenu" style="display:none;">
+        <ion-item href="#/today" menu-close="" ng-click="login()">
+          Suggested
+        </ion-item>
+        <ion-item menu-close="" href="#/playlists">
+          Played (once)
+        </ion-item>
+        <ion-item menu-close="" href="#/friends">
+          Replayed
+        </ion-item>
+       <ion-item menu-close="" href="#/search">
+          Favorited
+        </ion-item>
+        </ion-list>
+
+
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>
+
+
+
+
+<div ng-include="" src="&apos;templates/videoplayer.html&apos;"></div>
+<div ng-include="" src="&apos;templates/footer.html&apos;"></div>
+</body>
+</html>

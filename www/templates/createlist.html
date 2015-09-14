@@ -1,0 +1,37 @@
+
+      <ion-modal-view class="product edit create">
+          <form name="itemEdit" novalidate>
+            <ion-header-bar class="bar-positive fix-buttons">
+            
+              <h1 class="title">New PlayList</h1>
+  <a class="button ion-close-round icon" ng-click="hideModal()"></a>
+
+            </ion-header-bar>
+
+            <ion-content>
+
+<ion-list class="top-fix">
+<ion-item>
+<label class="item item-input large">
+                    <input type="text" id="title" placeholder="Title">
+                  </label>
+</ion-item>
+
+<ion-item>
+  <label class="item item-input text">
+   <textarea placeholder="Description" id="description" rows="5" ng-model="item.description" ng-Required="true" name="description" lose-focus-on-return></textarea>
+                  </label>
+</ion-item>
+
+<ion-item>
+<button class="button icon-left ion-plus-round button-positive" ng-click="createPlaylist()" id="createPlaylist">Create</button>
+</ion-item>
+
+</ion-list>
+
+             
+
+            </ion-content>
+          </form>
+        </ion-modal-view>
+     

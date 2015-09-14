@@ -1,0 +1,36 @@
+<ion-view title="{{friend.name}}">
+<ion-list  id="friend" class="top-fix">
+<ion-item style="position:relative;border-bottom:#777 2px inset;"  class="item-thumbnail-left">
+   <img  ng-src="{{ friend.image }}">
+   <span class="list-name">{{friend.name}} </span>
+<span class="playlist-middle"> <h3>Share</h3></span>
+<span class="list-footer">  
+<i class="ion-chatbubbles"> </i>634 Songs
+    <i class="ion-person-stalker"></i> 568 Friends 
+    </span>
+
+  </ion-item>
+</ion-list>
+
+<ion-content>
+
+
+
+<ion-list  id="friendresults" class="top-fix">
+<ion-item  ng-click="sampleVideo('{{item.youtube_id}}');" style="position:relative;" class="item-thumbnail-left " ng-repeat="item in friendresults">
+    
+      <img  ng-src="{{ item.suggested_by_image }}">
+ 
+<span class="list-name">{{ item.song_name }}</span> 
+<span class="list-footer"><i class="ion-person-add"></i> <b>Suggested</b></span>
+ 
+
+
+<span class="item-note" ><i class="ion-calendar"></i> 2 minutes ago</span>
+
+  </ion-item>
+</ion-list>
+
+
+</ion-content>
+</ion-view>

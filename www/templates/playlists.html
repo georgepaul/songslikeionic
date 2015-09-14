@@ -1,0 +1,56 @@
+<ion-view >
+
+<ion-header-bar class="bar bar-subheader nopadding">
+       <div id="search-bar">
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper" id="search-input">
+        <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Search Playlists" ng-model="query" ng-change="search()">
+      </label>
+    </div>
+  </div>
+  
+        </ion-header-bar>
+
+
+<ion-content>
+
+
+
+<ion-list id="playlists">
+
+  <ion-item style="position:relative;" href="#/playlist/{{ item.id }}" class="item-thumbnail-left" ng-repeat="item in playlists">
+  
+ <img  ng-src="{{ item.image }}">
+
+   <span class="list-name">{{item.name}} </span>
+ 
+ <span class="item-note"><i class="ion-chatbubbles"> </i>634 Songs</span>
+<span class="footer-note" > <i class="ion-reply-all"></i> 568 Listeners</span>
+ 
+  </ion-item>
+
+
+
+</ion-list>
+
+
+
+
+<ion-list class="hide" id="searchresults">
+ <ion-item style="position:relative;" href="#/playlist/{{ item.id }}" class="item-thumbnail-left" ng-repeat="item in playlistresults">
+  
+ <img  ng-src="{{ item.image }}">
+
+   <span class="list-name">{{item.name}} </span>
+ 
+ <span class="item-note"><i class="ion-chatbubbles"> </i>634 Songs</span>
+<span class="footer-note" > <i class="ion-reply-all"></i> 568 Listeners</span>
+ 
+  </ion-item>
+</ion-list>
+
+
+ </ion-content>
+
+</ion-view>

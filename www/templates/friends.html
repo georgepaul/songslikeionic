@@ -1,0 +1,18 @@
+<ion-view>
+ 
+<ion-content>
+
+
+
+<ion-list class="top-fix">
+  <ion-item class="item-avatar" ng-repeat="item in friends" href="#/friend/{{ item.id }}">
+   
+<img  ng-src="{{ item.image }}">
+<span class="list-name friend">{{ item.name }}</span> 
+<span class="item-note" ><i class="ion-chatbubbles"> </i>634 Songs</span>
+  </ion-item>
+
+</ion-list>
+
+</ion-content>
+</ion-view>

@@ -1,0 +1,13 @@
+<ion-view title="Profile" ng-init="init()">
+    <ion-content>
+        <div class="list card" class="top-fix">
+           
+            <div class="item item-avatar">
+                <img ng-src="{{profileData.picture.data.url}}">
+                <h2>{{profileData.name}}</h2>
+                <p>{{profileData.id}}</p>
+            </div>
+           
+        </div>
+    </ion-content>
+</ion-view>

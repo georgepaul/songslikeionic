@@ -1,0 +1,231 @@
+/* Empty. Add your own CSS if you like */
+.button.on {
+	background-color: 	green
+}
+.item-options .icon {
+	line-height: 100px;
+	vertical-align: middle;
+}
+.header-padding {
+  padding:2px;
+}
+
+.footer-bar{
+  position:absolute;
+  top:50px;
+}
+
+
+.t-a-r{
+	position: 	absolute;	
+	right: 	5px;
+}
+.border-rad-5{
+	border-radius: 	5px;
+}
+
+.ng-animate {
+	-webkit-transition: all 0.2s ease-out;
+	-moz-transition: all 0.2s ease-out;
+	-o-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out;	
+}
+
+
+.playlist-middle{
+ position:relative;
+  top:25px;
+}
+
+.button-align-text{
+padding-left:8px;
+}
+
+.default-text{
+  font-family:"Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+.small-text{
+  font-size:85%;
+}
+
+.item-thumbnail-left img
+{
+  height:100%;
+}
+.item-avatar img
+{
+  height:100%;
+}
+
+.list-name{
+  display:block;
+  font-weight:bold;
+  color:#3b5998;
+  font-size:95%;
+  position:absolute;
+  
+}
+.list-middle{
+
+  display:block;
+position:absolute;
+ width:65%;
+  height:20px;
+}
+#recent .list-middle{
+  top:45px;
+}
+#worldwide .list-middle,#friend .list-middle,#me .list-middle{
+top:40px;font-size:85%;
+}
+
+#recent .item-note,#friendresults .item-note{
+  top:70px;
+}
+
+#worldwide .item-note,#friend .item-note,#me .item-note{
+top:40px;font-size:85%;
+}
+#playlists .list-middle{
+  top:55px;
+}
+#playlist .list-middle,#friendresults .list-middle,#defaultlists .list-middle,#playlistsearchresults .list-middle{
+  top:45px;padding-left:2px;
+}
+#playlists .list-name, #searchresults .list-name{
+  top:39%;
+}
+#playlist .list-name{
+  top:20px;
+}
+.list-name.friend{
+   position:absolute;
+  top:25px;
+}
+
+
+.list-footer{
+font-size:90%;
+position:absolute;
+bottom:8px;
+left:105px;
+
+}
+ion-list.top-fix div{
+  top:43px;
+}
+
+#search-bar{
+ 
+}
+.nopadding{padding:0;}
+
+.item-note{
+  position:absolute;
+  right:10px;
+  top:8px;
+}
+.footer-note{
+   position:absolute;
+  right:10px;
+  bottom:8px;
+  font-size:85%;
+  color:#aaa;
+}
+
+.activated {
+	opacity: 1;
+}
+.hide{
+  display:none;
+}
+.ng-hide {
+	opacity: 0;
+}
+
+#placeholder{
+	position:absolute;
+	top:44px;
+	height: 0px;
+}
+.has-header {
+top: 0px;
+}
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@-moz-keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+@-o-keyframes fadeIn {
+  from { opacity:0; }
+  to { opacity:1; }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-webkit-keyframes fadeOut {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-moz-keyframes fadeOut {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-o-keyframes fadeOut {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+
+.reveal-animation.ng-enter {
+  -webkit-animation: enter_sequence 1s linear; /* Safari/Chrome */
+  animation: enter_sequence 1s linear; /* IE10+ and Future Browsers */
+}
+@-webkit-keyframes enter_sequence {
+  from { -webkit-transform :translateY(-100%); }
+  to { -webkit-transform :translateY(0); }
+}
+@keyframes enter_sequence {
+  from { transform :translateY(-100%); }
+   to { transform :translateY(0); }
+}
+
+.focus-animation {
+  background:#eee;
+}
+
+.focus-animation.on-add,
+.focus-animation.on-remove {
+  -webkit-transition:0.1s linear all;
+  transition:0.1s linear all;
+}
+
+.focus-animation.on {
+  background:red;
+}
+
+.focus-animation.on-add-stagger,
+.focus-animation.on-remove-stagger {
+  -webkit-transition-delay:0.03s;
+  transition-delay:0.03s;
+  -webkit-transition-duration:0;
+  transition-duration:0;
+}

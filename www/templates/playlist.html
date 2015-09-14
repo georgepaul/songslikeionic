@@ -1,0 +1,75 @@
+
+<ion-view>
+<ion-list  id="playlist" class="top-fix">
+<ion-item style="position:relative;background:#f7f7f7;border-bottom:#777 2px inset;"  class="item-thumbnail-left">
+   <img  ng-src="{{ playlist.image }}">
+   <span class="list-name">{{playlist.name}} </span>
+<span class="list-middle"> <h3>{{playlist.description}}</h3></span>
+<span class="list-footer">  
+ <i class="ion-reply-all"></i> 568 Listeners
+   <i class="ion-chatbubbles"> </i>634 Songs 
+    </span>
+  
+  
+
+  </ion-item>
+
+</ion-list>
+
+
+<ion-content style="top:142px;">
+<!--World Wide List -->
+<ion-list  id="worldwide">
+<ion-item  ng-click="sampleVideo('{{item.youtube_id}}');" style="position:relative;" class="item-thumbnail-left " ng-repeat="item in worldwide">
+    
+      <img  ng-src="{{ item.suggested_by_image }}">
+ 
+<span class="list-name">{{ item.song_name }}</span> 
+<span class="list-middle"><h2>{{item.suggested_by}}</h2></span>
+<span class="list-footer"><i class="ion-person-add"></i> <b>Suggested</b></span>
+ 
+
+
+<span class="item-note" ><i class="ion-calendar"></i> 2 minutes ago</span>
+
+  </ion-item>
+</ion-list>
+
+<!--Friend List -->
+<ion-list  id="friend" class="hide">
+<ion-item  ng-click="sampleVideo('{{item.youtube_id}}');" style="position:relative;" class="item-thumbnail-left " ng-repeat="item in friends">
+    
+      <img  ng-src="{{ item.suggested_by_image }}">
+ 
+<span class="list-name">{{ item.song_name }}</span> 
+<span class="list-middle"><h2>{{item.suggested_by}}</h2></span>
+<span class="list-footer"><i class="ion-person-add"></i> <b>Suggested</b></span>
+ 
+ 
+
+
+<span class="item-note" ><i class="ion-calendar"></i> 2 minutes ago</span>
+
+  </ion-item>
+</ion-list>
+
+<!--My List -->
+<ion-list  id="me" class="hide">
+<ion-item  ng-click="sampleVideo('{{item.youtube_id}}');" style="position:relative;" class="item-thumbnail-left " ng-repeat="item in me">
+    
+      <img  ng-src="{{ item.suggested_by_image }}">
+ 
+<span class="list-name">{{ item.song_name }}</span> 
+<span class="list-middle"><h2>{{item.suggested_by}}</h2></span>
+<span class="list-footer"><i class="ion-person-add"></i> <b>Suggested</b></span>
+ 
+
+<span class="item-note" ><i class="ion-calendar"></i> 2 minutes ago</span>
+
+  </ion-item>
+</ion-list>
+
+
+ </ion-content>
+
+</ion-view>

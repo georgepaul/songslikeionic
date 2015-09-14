@@ -1,0 +1,54 @@
+
+
+      <div class="modal" ng-controller="VideosController">
+        <header class="bar bar-header bar-positive">
+          <h1 class="title" id="SaveTitle">Save To Playlist</h1>
+          <button class="button button-clear button-primary" ng-click="hideModal()">Close</button>
+        </header>
+        
+    <div class="bar bar-subheader item-input-inset">
+        <label class="item-input-wrapper">
+            <i class="icon ion-ios7-search placeholder-icon"></i>
+          <input type="search" id="searchaddtolistsquery" placeholder="Search" ng-model="playlistquery" ng-change="searchMyPLaylists();">
+            <i class=" clear-search icon ion-ios7-close-empty" style="font-size: 18px" >
+            </i>
+        </label>
+    </div>
+        
+        <ion-content has-header="true">
+    
+    <ion-list id="defaultlists">
+		<ion-item style="position:relative;" class="item-thumbnail-left" ng-repeat="item in playlists" ng-click="addToPlaylist('{{ item.id }}')">
+  
+  <img  ng-src="{{ item.image }}">
+   <span class="list-name">{{item.name}} </span>
+<span class="list-middle"> <h3>{{item.description}}</h3></span>
+<span class="list-footer">  
+ <i class="ion-reply-all"></i> 568 Listeners
+   <i class="ion-chatbubbles"> </i>634 Songs 
+    </span>
+ 
+  </ion-item>
+	</ion-list>
+
+	 <ion-list id="playlistsearchresults">
+		
+		<ion-item style="position:relative;" class="item-thumbnail-left" ng-repeat="item in searchaddplaylists" ng-click="addToPlaylist('{{ item.id }}')">
+  
+ <img  ng-src="{{ item.image }}">
+   <span class="list-name">{{item.name}} </span>
+<span class="list-middle"> <h3>{{item.description}}</h3></span>
+<span class="list-footer">  
+ <i class="ion-reply-all"></i> 568 Listeners
+   <i class="ion-chatbubbles"> </i>634 Songs 
+    </span>
+ 
+  </ion-item>
+	</ion-list>
+
+         
+
+
+        </ion-content>
+      </div>
+  

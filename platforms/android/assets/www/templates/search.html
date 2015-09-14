@@ -1,0 +1,37 @@
+
+<ion-view title="Search" hide-back-button="true">
+  <ion-content has-header="false" has-tabs="true" padding="false">
+ 
+  <div id="search-bar">
+    <div class="item item-input-inset">
+      <label class="item-input-wrapper" id="search-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="query" ng-change="search()">
+      </label>
+    </div>
+  </div>
+
+
+
+  </form>
+   
+
+
+
+   <div id="result" > 
+      <ion-list>
+        <ion-item ng-click="sampleVideo('{{video.id}}')" on-hold="saveSearchToPlaylist('bounceIn')" ng-repeat="video in results" class="item item-thumbnail-left">
+          <img data-ng-src="{{ video.thumbnail }}">
+            <h2>{{video.title}}</h2>
+            <p>{{video.description}}</p>
+            <ion-option-button class="button-positive" ng-click="saveSearchToPlaylist('bounceIn')">
+              <i class="icon ion-plus-round"></i>
+            </ion-option-button>
+            <ion-option-button class="button-positive" ng-click="sampleVideo('{{video.id}}')"> 
+              <i class="icon ion-chevron-right"></i>
+            </ion-option-button>
+          </ion-item>
+        </ion-list>
+      </div>
+  </ion-content>
+</ion-view>
