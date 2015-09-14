@@ -8,8 +8,8 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
 	.run(function ($ionicPlatform) {
 		'use strict';
 
-    //window.domain = "http://localhost:3000/";
-    window.domain = "http://songslike.herokuapp.com/";
+    window.domain = "http://localhost:3000/";
+    //window.domain = "http://songslike.herokuapp.com/";
 
 		$ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -169,22 +169,46 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
   $httpProvider.interceptors.push('myCSRF');
 })
 
-.controller("ProfileController", function($scope, $http, $localStorage, $location) {
+.controller("ApplicationController", function($scope, $http, $localStorage, $location) {
+  console.log("DDDD")
 
-    $scope.init = function() {
+
+
+        if($localStorage.hasOwnProperty("accessToken") === true) {
+            $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
+            $scope.profileData = result.data;
+            $scope.user = result.data;
+          
+
+        }, function(error) {
+                alert("There was a problem getting your profile.");
+                console.log(error);
+                 $location.path("/login");
+            });
+        } else {
+            alert("Not signed in");
+            $location.path("/login");
+        }
+    
+
+})
+
+.controller("ProfileController", function($scope, $http, $localStorage, $location) {
+  console.log("DDDD")
+
         if($localStorage.hasOwnProperty("accessToken") === true) {
             $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
                 $scope.profileData = result.data;
-
- }, function(error) {
-                alert("There was a problem getting your profile.  Check the logs for details.");
+                $scope.user = result.data;
+                }, function(error) {
+                alert("There was a problem getting your profile.");
                 console.log(error);
             });
         } else {
             alert("Not signed in");
             $location.path("/login");
         }
-    };
+    
 
 })
 
@@ -197,12 +221,42 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
  $scope.login = function() {
         $cordovaOauth.facebook("225045417506532", ["user_friends","email", "read_stream", "user_website", "user_location", "user_relationships"]).then(function(result) {
             $localStorage.accessToken = result.access_token;
-            $location.path("/profile");
+
+
+
+        if($localStorage.hasOwnProperty("accessToken") === true) {
+            $http.get("https://graph.facebook.com/v2.2/me", { params: { access_token: $localStorage.accessToken, fields: "id,name,gender,location,website,picture,relationship_status", format: "json" }}).then(function(result) {
+           
+          
+          $.post( window.domain + "/login", { name: result.data.name, 
+                                              image_url: result.picture.data.url,
+                                              gender: result.data.gender,  
+                                              location: result.data.location,
+                                              access_token: $localStorage.accessToken,
+                                              uid: result.data.id
+                                              }).done(function( data ) 
+          {
+                $location.path("/today");
+   
+          });
+
         }, function(error) {
-            alert("There was a problem signing in!  See the console for logs");
+                alert("There was a problem getting your profile.");
+                console.log(error);
+                 $location.path("/login");
+            });
+        } else {
+            alert("Not signed in");
+            $location.path("/login");
+        }
+
+        
+ }, function(error) {
+            alert("There was a problem signing in!");
             console.log(error);
         });
     };
+$location.path("/login");
 })
 
 
@@ -398,12 +452,14 @@ angular.module('starter', ['ionic', 'firebase', 'ngAnimate', 'ngCookies', 'ngSto
 
 }])
 
-// Controller
+
+
 
 .controller("TodayController", function ($scope, $ionicPopover, $http, $log) {
 
 $("#moreoptions").show();
 $("#todaymenu").show();
+$("#plus").hide();
  
  $scope.$on('$destroy', function() {
    $("#todaymenu").hide();
@@ -413,6 +469,7 @@ $("#todaymenu").show();
 $http.get(window.domain + '/generalstream').then(function(resp) {
     console.log('Success', resp);
     $scope.items = resp.data
+    $scope.user = "http://www.joomlaworks.net/images/demos/galleries/abstract/7.jpg"
     // For JSON responses, resp.data contains the result
   }, function(err) {
     console.error('ERR', err);
@@ -457,7 +514,7 @@ $scope.$on('$destroy', function() {
 
 $scope.createList = function (){
 
-console.log("WTFMAN");
+
 
    $ionicModal.fromTemplateUrl('templates/createlist.html', {
       scope: $scope,

@@ -30,7 +30,7 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body>
+  <body ng-controller="ApplicationController">
 
    
 
@@ -63,7 +63,16 @@
 
   <ion-side-menu side="left" class="top-fix">
     <ion-content>
+      
       <ion-list>
+
+      <ion-item class="item-thumbnail-left" href="#/today" menu-close="" ng-click="login()">
+          <img ng-src="{{user.picture.data.url}}">
+                <h2>{{user.name}}</h2>
+               <h3 class=""><i class="ion-chatbubbles"> </i>634 Songs</h3>
+               {{user.picture.data.url}}
+        </ion-item>
+
         <ion-item href="#/today" menu-close="" ng-click="login()">
           Today
         </ion-item>
